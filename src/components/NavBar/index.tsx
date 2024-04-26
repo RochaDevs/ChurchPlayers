@@ -15,7 +15,7 @@ const NavBar = () => {
     ];
 
     return (
-        <nav className={`flex w-screen px-10 py-4 justify-between shadow-md items-center`}>
+        <nav className={`flex w-screen px-10 py-4 justify-between items-center`}>
 
             <MenuDropDown 
                 lista={listaNav}
