@@ -1,3 +1,8 @@
-.section {
-    height: 40vh;
+.sectionCardBenefices {
+    height: 30vh;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.sectionCardBeneficesResponsivo {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }

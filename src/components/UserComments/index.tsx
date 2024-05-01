@@ -1,9 +1,13 @@
 import { ChatBubbleLeftIcon } from '@heroicons/react/24/solid';
 import styles from './UserComments.module.css';
 
-export const UserComments = () => {
+interface IUserComments {
+    classeCSS: string
+}
+
+export const UserComments = ({classeCSS}: IUserComments) => {
     return (
-        <article className={`${styles.article} flex flex-col justify-evenly px-6 items-start`}>
+        <article className={`${styles[classeCSS]} flex flex-col justify-between gap-10 px-6 py-7 items-start`}>
             <ChatBubbleLeftIcon
                 height={50}
             />

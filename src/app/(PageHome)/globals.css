@@ -92,3 +92,7 @@ select {
 	font-weight: inherit;
 	font-family: inherit;
 }
+
+main {
+	margin-bottom: 3rem;
+}

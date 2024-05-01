@@ -6,7 +6,7 @@ interface IButtonNav {
 
 const ButtonNav = ({titulo}: IButtonNav) => {
     return (
-        <button className={`hover:text-red-500`}>
+        <button className={`hover:text-red-500 dark:hover:text-cyan-400`}>
             {titulo}
         </button>
     )

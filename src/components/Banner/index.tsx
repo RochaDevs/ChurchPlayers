@@ -4,23 +4,20 @@ import styles from './Banner.module.css';
 
 export const Banner = () => {
     return (
-        <section className={`${styles.section} flex flex-col items-center justify-center gap-5`}>
+        <section className={`${styles.section} flex flex-col items-center justify-end gap-5 bg-white dark:bg-blue-950`}>
             <FaPersonPraying
-                className={`hidden lg:flex`}
+                className={`hidden lg:flex text-red-600 dark:text-white`}
                 size={350}
-                color="#FF3B30"
             />
             <FaPersonPraying
-                className={`sm:flex hidden lg:hidden`}
+                className={`sm:flex hidden lg:hidden text-red-600 dark:text-white`}
                 size={300}
-                color="#FF3B30"
             />
             <FaPersonPraying
-                className={`sm:hidden`}
+                className={`sm:hidden text-red-600 dark:text-white`}
                 size={200}
-                color="#FF3B30"
             />
-            <h1 className="text-2xl text-center p-1">
+            <h1 className="text-2xl text-center p-1 dark:text-white">
                 Aprimore seu conhecimento sobre as Escrituras Sagradas
             </h1>
         </section>
