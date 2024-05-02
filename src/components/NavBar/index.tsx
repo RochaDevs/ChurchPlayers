@@ -2,11 +2,12 @@ import { BookOpenIcon, BellIcon, UserIcon, SunIcon, MoonIcon } from '@heroicons/
 import ButtonNav from '../ButtonNav';
 import Link from 'next/link';
 import { MenuDropDown } from '../MenuDropDown';
-import ThemeSwitcher from '../ButtonTheme/themeSwitcher';
+// import ThemeSwitcher from '../ButtonTheme/themeSwitcher';
+import { ThemeChanger } from '../ButtonTheme';
 
 const NavBar = () => {
 
-    const usuarioLogado = true;
+    const usuarioLogado = false;
     const listaNav = [
         'Área 01',
         'Área 02',
@@ -42,7 +43,7 @@ const NavBar = () => {
 
             {usuarioLogado ? (
                 <div className={`flex gap-5 items-center`}>
-                    <ThemeSwitcher
+                    <ThemeChanger
                         iconeDarkMode={<MoonIcon className='hover:text-red-500' height={35} width={35} />}
                         iconeLightMode={<SunIcon className='dark:hover:text-cyan-400' height={35} width={35} />}
                     />
@@ -55,7 +56,7 @@ const NavBar = () => {
             ) : (
                 <div className='flex gap-5'>
                     <div className=''>
-                        <ThemeSwitcher
+                        <ThemeChanger
                             iconeDarkMode={<MoonIcon className='hover:text-red-500' height={35} width={35} />}
                             iconeLightMode={<SunIcon className='dark:hover:text-cyan-400' height={35} width={35} />}
                         />
