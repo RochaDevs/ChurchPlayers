@@ -10,13 +10,13 @@ import styles from './Home.module.css';
 export default function Home() {
 
   return (
-    <main className={``}>
+    <main className={'dark:bg-blue-950'}>
 
       <NavBar />
       <Banner />
 
       {/* //Sessão responsiva */}
-      <article className={`${styles.sectionCardBenefices} hidden lg:flex p-1 gap-1 my-5`}>
+      <article className={`${styles.sectionCardBenefices} hidden lg:flex gap-1 py-5 px-2 dark:bg-blue-900`}>
         <BeneficesCard
           icone={<HeartIcon height={76} width={76} color="#FF3B30" />}
           titulo="Mente Feliz"
@@ -33,7 +33,7 @@ export default function Home() {
           beneficio="Desbloqueie a felicidade interior e abrace um estado positivo de espírito."
         />
       </article>
-      <article className={`${styles.sectionCardBeneficesResponsivo} lg:hidden flex flex-col items-center p-3 justify-center gap-1 my-5`}>
+      <article className={`${styles.sectionCardBeneficesResponsivo} lg:hidden flex flex-col items-center p-3 justify-center gap-1 py-5 dark:bg-blue-900`}>
         <BeneficesCard
           icone={<HeartIcon height={76} width={76} color="#FF3B30" />}
           titulo="Mente Feliz"
@@ -53,8 +53,8 @@ export default function Home() {
       {/* //Sessão responsiva */}
 
       {/* //Sessão responsiva */}
-      <section className={`hidden lg:flex flex-col gap-10 justify-center my-10`}>
-        <h1 className={`text-center font-bold text-2xl`}>Junte-se a nossa vibrante comunidade!</h1>
+      <section className={`hidden lg:flex flex-col gap-10 justify-center py-10 dark:bg-blue-950`}>
+        <h1 className={`text-center font-bold text-2xl dark:text-white`}>Junte-se a nossa vibrante comunidade!</h1>
         <div className={`${styles.section} flex justify-evenly`}>
           <UserComments classeCSS="article" />
           <UserComments classeCSS="article" />
@@ -62,8 +62,8 @@ export default function Home() {
           <UserComments classeCSS="article" />
         </div>
       </section>
-      <section className={`lg:hidden flex flex-col gap-10 justify-center my-10`}>
-        <h1 className={`text-center font-bold text-2xl`}>Junte-se a nossa vibrante comunidade!</h1>
+      <section className={`lg:hidden flex flex-col gap-10 justify-center py-10 dark:bg-blue-950`}>
+        <h1 className={`text-center font-bold text-2xl dark:text-white`}>Junte-se a nossa vibrante comunidade!</h1>
         <div className={`${styles.section} flex flex-col items-center gap-5 `}>
           <UserComments classeCSS="articleResponsivo" />
           <UserComments classeCSS="articleResponsivo" />

@@ -7,7 +7,7 @@ interface IUserComments {
 
 export const UserComments = ({classeCSS}: IUserComments) => {
     return (
-        <article className={`${styles[classeCSS]} flex flex-col justify-between gap-10 px-6 py-7 items-start`}>
+        <article className={`${styles[classeCSS]} flex flex-col justify-between gap-10 px-6 py-7 items-start dark:bg-blue-900  dark:text-white`}>
             <ChatBubbleLeftIcon
                 height={50}
             />

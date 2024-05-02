@@ -8,7 +8,7 @@ interface IBeneficesCard {
 export const BeneficesCard = ({ icone, titulo, beneficio }: IBeneficesCard) => {
     return (
         <>
-            <div className={`flex items-center text-sm`}>
+            <div className={`flex items-center text-sm dark:text-white`}>
                 {icone}
                 <div className={`flex flex-col`}>
                     <h3 className={`font-bold`}>
