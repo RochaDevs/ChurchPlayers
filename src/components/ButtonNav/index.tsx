@@ -1,15 +1,20 @@
-
+import Link from 'next/link';
 
 interface IButtonNav {
-    titulo: string
+    lista: IMenuItem;  // Modificado para receber um único item
 };
 
-const ButtonNav = ({titulo}: IButtonNav) => {
+interface IMenuItem {
+    titulo: string;
+    id: string;
+}
+
+const ButtonNav = ({ lista }: IButtonNav) => {
     return (
-        <button className={`hover:text-red-500 dark:hover:text-cyan-400`}>
-            {titulo}
-        </button>
-    )
+        <Link href={`#${lista.id}`} className="hover:text-red-500 dark:hover:text-cyan-400">
+            {lista.titulo}
+        </Link>
+    );
 };
 
 export default ButtonNav;

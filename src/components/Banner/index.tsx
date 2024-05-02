@@ -4,7 +4,7 @@ import styles from './Banner.module.css';
 
 export const Banner = () => {
     return (
-        <section className={`${styles.section} flex flex-col items-center justify-end gap-5 pb-5 bg-white dark:bg-blue-950`}>
+        <section id="inicio" className={`${styles.section} flex flex-col items-center justify-end gap-5 pb-5 bg-white dark:bg-blue-950`}>
             <FaPersonPraying
                 className={`hidden lg:flex text-red-600 dark:text-white`}
                 size={350}

@@ -9,10 +9,22 @@ const NavBar = () => {
 
     const usuarioLogado = false;
     const listaNav = [
-        'Área 01',
-        'Área 02',
-        'Área 03',
-        'Área 04'
+        {
+            titulo: 'Início',
+            id: 'inicio'
+        },
+        {
+            titulo: 'Benefícios',
+            id: 'beneficios'
+        },
+        {
+            titulo: 'Feedbacks',
+            id: 'feedbacks'
+        },
+        {
+            titulo: 'Área 04',
+            id: 'area4'
+        },
     ];
 
     return (
@@ -33,9 +45,9 @@ const NavBar = () => {
                     <BookOpenIcon className="h-10 w-10 text-red-600 dark:text-cyan-400" />
                 </li>
                 {listaNav.map(lista => (
-                    <li key={lista}>
+                    <li key={lista.id}>
                         <ButtonNav
-                            titulo={lista}
+                            lista={lista}
                         />
                     </li>
                 ))}
