@@ -45,11 +45,7 @@ export async function signup(state: FormState, formData: FormData) {
       throw new Error(user.message || 'Failed to create user');
     }
 
-    // Create user session
     await createSession(user.id);
-
-    // Redirect user
-    redirect('/login');
 
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -58,5 +54,8 @@ export async function signup(state: FormState, formData: FormData) {
       return { error: 'An unknown error occurred' };
     }
   }
+
+  // Redirect user
+  redirect('/');
 
 }

@@ -20,7 +20,7 @@ export async function encrypt(payload: SessionPayload) {
     .setIssuedAt()
     .setExpirationTime('7d')
     .sign(encodedKey)
-}
+};
  
 export async function decrypt(session: string | undefined = '') {
   try {
@@ -31,7 +31,7 @@ export async function decrypt(session: string | undefined = '') {
   } catch (error) {
     console.log('Failed to verify session')
   }
-}
+};
  
 export async function createSession(userId: string, roles: string[] = []) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
@@ -44,4 +44,8 @@ export async function createSession(userId: string, roles: string[] = []) {
     sameSite: 'lax',
     path: '/',
   })
+};
+
+export async function deleteSession() {
+  cookies().delete('session')
 }
