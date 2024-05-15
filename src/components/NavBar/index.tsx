@@ -1,13 +1,28 @@
+'use client';
 import { BookOpenIcon, BellIcon, UserIcon, SunIcon, MoonIcon } from '@heroicons/react/24/solid';
 import ButtonNav from '../ButtonNav';
 import Link from 'next/link';
 import { MenuDropDown } from '../MenuDropDown';
 // import ThemeSwitcher from '../ButtonTheme/themeSwitcher';
 import { ThemeChanger } from '../ButtonTheme';
+import { ButtonLogout } from '../ButtonLogout';
+import { verifySession } from '@/app/lib/dal';
+import { useEffect, useState } from 'react';
 
 const NavBar = () => {
 
-    const usuarioLogado = false;
+    const [usuarioLogado, setUsuarioLogado] = useState(false);
+
+    useEffect(() => {
+        // Função assíncrona declarada dentro do useEffect
+        const checkSession = async () => {
+            const session = await verifySession();
+            setUsuarioLogado(session?.isAuth);
+        };
+
+        checkSession(); // Chamar a função assíncrona imediatamente
+    }, []);
+
     const listaNav = [
         {
             titulo: 'Início',
@@ -64,6 +79,7 @@ const NavBar = () => {
                         className='hover:text-red-500 dark:hover:text-cyan-400'
                     />
                     <img src="" alt="Imagem" />
+                    <ButtonLogout />
                 </div>
             ) : (
                 <div className='flex gap-5'>

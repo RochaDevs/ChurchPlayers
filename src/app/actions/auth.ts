@@ -3,6 +3,7 @@
 import { SignupFormSchema, FormState } from '@/app/lib/definitions';
 import { createSession } from '../lib/session';
 import { redirect } from 'next/navigation';
+import { endPointToUsers } from '@/utils/endpoints';
 
 export async function signup(state: FormState, formData: FormData) {
 
@@ -29,7 +30,7 @@ export async function signup(state: FormState, formData: FormData) {
 
   // 3. Insert the user into the database or call an Library API
   try {
-    const response = await fetch('https://664150e6a7500fcf1aa015b0.mockapi.io/nextest/users', {
+    const response = await fetch(endPointToUsers, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -39,7 +40,7 @@ export async function signup(state: FormState, formData: FormData) {
 
     const user = await response.json();
 
-    console.log(user)
+    // console.log(user)
 
     if (!response.ok) {
       throw new Error(user.message || 'Failed to create user');

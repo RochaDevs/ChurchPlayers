@@ -4,7 +4,7 @@ import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers'
  
 const secretKey = process.env.SESSION_SECRET; 
-const encodedKey = new TextEncoder().encode(secretKey)
+const encodedKey = new TextEncoder().encode(secretKey);
 
 // Definição de tipo para o payload da sessão
 type SessionPayload = {
