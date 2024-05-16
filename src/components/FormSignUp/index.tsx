@@ -1,7 +1,7 @@
 'use client';
 
 
-import { signup } from '@/app/actions/auth';
+import { signup } from '@/app/actions/authSignUp';
 import { useFormState, useFormStatus } from 'react-dom';
 
 export function SignupButton() {
@@ -15,10 +15,10 @@ export function SignupButton() {
 };
 
 export const FormSignUp = () => {
-  const [state, formAction] = useFormState(signup, undefined);
+  const [state, formSignupServerAction] = useFormState(signup, undefined);
 
   return (
-    <form action={formAction} className={`px-3 py-2 h-5/6 flex flex-col gap-5 justify-center`}>
+    <form action={formSignupServerAction} className={`px-3 py-2 h-5/6 flex flex-col gap-5 justify-center`}>
       <div className={`flex flex-col gap-1`}>
         <label htmlFor="name">Name:</label>
         <input id="name" name="name" placeholder="Name"

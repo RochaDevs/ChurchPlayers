@@ -1,31 +1,31 @@
 'use server';
 
-import { SignupFormSchema, FormState } from '@/app/lib/definitions';
+import { SignupFormSchema, FormSignUpState } from '@/app/lib/definitions';
 import { createSession } from '../lib/session';
 import { redirect } from 'next/navigation';
 import { endPointToUsers } from '@/utils/endpoints';
 
-export async function signup(state: FormState, formData: FormData) {
+export async function signup(state: FormSignUpState, formData: FormData) {
 
   // Validate form fields
-  const validatedFields = SignupFormSchema.safeParse({
+  const validatedFieldsForSignUp = SignupFormSchema.safeParse({
     name: formData.get('name'),
     email: formData.get('email'),
     password: formData.get('password'),
   });
 
   // If any form fields are invalid, return early with errors
-  if (!validatedFields.success) {
+  if (!validatedFieldsForSignUp.success) {
     return {
-      errors: validatedFields.error.flatten().fieldErrors,
+      errors: validatedFieldsForSignUp.error.flatten().fieldErrors,
     };
   }
 
   // Prepare the data to send to the API
   const userData = {
-    name: validatedFields.data.name,
-    email: validatedFields.data.email,
-    password: validatedFields.data.password,
+    name: validatedFieldsForSignUp.data.name,
+    email: validatedFieldsForSignUp.data.email,
+    password: validatedFieldsForSignUp.data.password,
   };
 
   // 3. Insert the user into the database or call an Library API
