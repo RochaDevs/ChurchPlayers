@@ -10,6 +10,7 @@ export const verifySession = cache(async () => {
 
   const cookie = cookies().get('session')?.value
   const session = await decrypt(cookie)
+
  
   if (!session?.userId) {
     redirect('/')
@@ -23,7 +24,7 @@ export const getUser = cache(async () => {
   if (!session) return null;
 
   try {
-    const response = await fetch(`${endPointToUsers}/${session.userId}`, {
+    const response = await fetch(`${endPointToUsers}${session.userId}`, {
       method: 'GET'
     });
 

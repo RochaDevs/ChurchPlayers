@@ -57,6 +57,6 @@ export async function signup(state: FormSignUpState, formData: FormData) {
   }
 
   // Redirect user
-  redirect('/');
+  // redirect('/');
 
 }

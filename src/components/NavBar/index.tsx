@@ -3,7 +3,6 @@ import { BookOpenIcon, BellIcon, UserIcon, SunIcon, MoonIcon } from '@heroicons/
 import ButtonNav from '../ButtonNav';
 import Link from 'next/link';
 import { MenuDropDown } from '../MenuDropDown';
-// import ThemeSwitcher from '../ButtonTheme/themeSwitcher';
 import { ThemeChanger } from '../ButtonTheme';
 import { ButtonLogout } from '../ButtonLogout';
 import { verifySession } from '@/app/lib/dal';
@@ -17,11 +16,14 @@ const NavBar = () => {
         // Função assíncrona declarada dentro do useEffect
         const checkSession = async () => {
             const session = await verifySession();
+            console.log(session)
             setUsuarioLogado(session?.isAuth);
         };
 
         checkSession(); // Chamar a função assíncrona imediatamente
     }, []);
+
+    console.log(usuarioLogado)
 
     const listaNav = [
         {
@@ -67,7 +69,7 @@ const NavBar = () => {
                     </li>
                 ))}
             </ul>
-
+            
             {usuarioLogado ? (
                 <div className={`flex gap-5 items-center`}>
                     <ThemeChanger

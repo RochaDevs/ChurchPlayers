@@ -21,7 +21,8 @@ export async function encrypt(payload: SessionPayload) {
     .setExpirationTime('7d')
     .sign(encodedKey)
 };
- 
+
+// O ERRO ESTÁ AQUI!
 export async function decrypt(session: string | undefined = '') {
   try {
     const { payload } = await jwtVerify(session, encodedKey, {

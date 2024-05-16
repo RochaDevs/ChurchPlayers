@@ -26,7 +26,7 @@ export const FormLogin = () => {
                     className={`py-1 px-2 rounded-md focus:outline-none `}
                 />
             </div>
-            {/* {state?.errors?.email && <p>{state.errors.email}</p>} */}
+            {state?.errors?.email && <p>{state.errors.email}</p>}
 
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="password">Password:</label>
@@ -34,7 +34,7 @@ export const FormLogin = () => {
                     className={`py-1 px-2 rounded-md focus:outline-none`}
                 />
             </div>
-            {/* {state?.errors?.password && (
+            {state?.errors?.password && (
                 <div>
                     <p>Password must:</p>
                     <ul>
@@ -43,9 +43,9 @@ export const FormLogin = () => {
                         ))}
                     </ul>
                 </div>
-            )} */}
+            )}
 
-            {/* <SignupButton /> */}
+            <LoginButton />
             <button type="submit">Efetuar Login</button>
         </form>
     );
