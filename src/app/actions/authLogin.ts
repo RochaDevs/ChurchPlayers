@@ -1,32 +1,36 @@
-import { endPointToUsers } from "@/utils/endpoints";
+'use server';
+
 import { FormLoginState, LoginFormSchema } from "../lib/definitions";
 import { createSession } from "../lib/session";
 import { redirect } from "next/navigation";
+import { PrismaClient } from "@prisma/client";
 
-async function getUserForValidation(emailUser: string) {
+const prisma = new PrismaClient()
 
-    const filterEndPoint = (emailUser: string) => {
-        const url = new URL(endPointToUsers);
-        url.searchParams.append('email', emailUser);
-        return url.toString();  // Retorna a URL como string
-    };
+async function getUserForValidation(emailUser: string, passwordUser: string) {
 
     try {
-        const response = await fetch(filterEndPoint(emailUser), {  // Correção na chamada de fetch
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        });
 
-        if (!response.ok) {
-            throw new Error('Usuário não existe');
+        const user = await prisma.user.findFirst({
+            where: {
+                email: emailUser,
+                password: passwordUser
+            }
+        })
+
+        if (!user) {
+            throw new Error('Usuário não encontrado ou senha incorreta')
         }
 
-        return await response.json();
+        return user;
 
     } catch (error) {
-        console.error('Error fetching user:', error);
-        throw error;  // Re-throw para tratamento na UI
+
+        console.error('Usuário não encontrado ou senha incorreta');
+        throw error;
+
     }
+
 }
 
 export async function login(state: FormLoginState, formData: FormData) {
@@ -45,14 +49,17 @@ export async function login(state: FormLoginState, formData: FormData) {
         };
     };
 
-    const userValidaded = await getUserForValidation(validatedFieldsForLogin.data.email)
+    try {
+        const userValidaded = await getUserForValidation(validatedFieldsForLogin.data.email, validatedFieldsForLogin.data.password);
 
-    await createSession(userValidaded[0].id);
+        await createSession(userValidaded.id.toString());
 
-    redirect('/');
+        redirect('/');
+    } catch (error) {
+        return {erroDeAutenticacao: 'Usuário não encontrado ou senha incorreta'}
+    }
 
-
-5
+    
 }
 
 

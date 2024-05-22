@@ -5,7 +5,7 @@ export const SignupFormSchema = z.object({
         .string()
         .min(3, { message: 'O nome deve conter no mínimo 3 caracteres.' })
         .trim(),
-    email: z.string().email({ message: 'Por favor insira um e-mail válido' }).trim(),
+    email: z.string().email({ message: 'Por favor insira um e-mail válido.' }).trim(),
     password: z
         .string()
         .min(8, { message: 'Mínimo de 8 caracteres.' })
@@ -31,7 +31,7 @@ export type FormSignUpState =
 export const LoginFormSchema = z.object({
     email: z
         .string()
-        .email({ message: 'Por favor insira um e-mail válido' })
+        .email({ message: 'Por favor insira um e-mail válido.' })
         .trim(),
     password: z
         .string()

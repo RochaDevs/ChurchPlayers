@@ -9,7 +9,7 @@ const PageLogin = () => {
                 <div className={`flex flex-col bg-gray-100 h-3/4 w-2/4 items-center justify-center rounded-md gap-5`}>
                     <FormLogin />
                     <Link href={'/signup'}>
-                        Não tem conta? SIGN-UP!
+                        <p className={`dark:bg-blue-950 text-white w-full p-3 rounded-md bg-red-950 dark:hover:bg-blue-800 hover:bg-red-800`}>Não tem conta? REGISTRE-SE!</p>
                     </Link>
                 </div>
             </section>

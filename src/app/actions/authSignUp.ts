@@ -2,8 +2,10 @@
 
 import { SignupFormSchema, FormSignUpState } from '@/app/lib/definitions';
 import { createSession } from '../lib/session';
+import { PrismaClient } from '@prisma/client';
 import { redirect } from 'next/navigation';
-import { endPointToUsers } from '@/utils/endpoints';
+
+const prisma = new PrismaClient();
 
 export async function signup(state: FormSignUpState, formData: FormData) {
 
@@ -21,6 +23,19 @@ export async function signup(state: FormSignUpState, formData: FormData) {
     };
   }
 
+  // Check if the email already exists
+
+  const existingUser = await prisma.user.findUnique({
+    where: {
+      email: validatedFieldsForSignUp.data.email
+    }
+  })
+
+
+  if (existingUser) {
+    return {erroEmailJaEmUso: 'E-mail já está em uso'}
+  }
+
   // Prepare the data to send to the API
   const userData = {
     name: validatedFieldsForSignUp.data.name,
@@ -30,33 +45,18 @@ export async function signup(state: FormSignUpState, formData: FormData) {
 
   // 3. Insert the user into the database or call an Library API
   try {
-    const response = await fetch(endPointToUsers, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(userData)
-    });
 
-    const user = await response.json();
+    const user = await prisma.user.create({
+      data: userData
+    })
 
-    // console.log(user)
+    await createSession(user.id.toString());
 
-    if (!response.ok) {
-      throw new Error(user.message || 'Failed to create user');
-    }
-
-    await createSession(user.id);
-
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      return { error: error.message };
-    } else {
-      return { error: 'An unknown error occurred' };
-    }
+  } catch (error) {
+    return {erroAoCriarUsuario: 'Algo deu errado ao registrar seus dados. Tente novamente mais tarde.'}
   }
 
   // Redirect user
-  // redirect('/');
+  redirect('/');
 
 }
