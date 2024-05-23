@@ -1,4 +1,0 @@
-FROM postgres:latest
-ENV POSTGRES_DB=matheus_database
-ENV POSTGRES_USER=user_matheus_fullstack
-ENV POSTGRES_PASSWORD=Evssalvo9185
