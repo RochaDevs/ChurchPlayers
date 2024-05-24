@@ -3,15 +3,6 @@
 import { login } from '@/app/actions/authLogin';
 import { useFormState, useFormStatus } from 'react-dom';
 
-export function LoginButton() {
-    const { pending } = useFormStatus()
-
-    return (
-        <button className={`dark:bg-blue-950 text-white w-full p-3 rounded-md bg-red-950 dark:hover:bg-blue-800 hover:bg-red-800`} aria-disabled={pending} type="submit">
-            {pending ? 'CONECTANDO...': 'CONECTE-SE!'}
-        </button>
-    )
-};
 
 export const FormLogin = () => {
 
@@ -59,4 +50,14 @@ export const FormLogin = () => {
             <LoginButton />
         </form>
     );
+};
+
+export function LoginButton() {
+    const { pending } = useFormStatus()
+
+    return (
+        <button className={`dark:bg-blue-950 text-white w-full p-3 rounded-md bg-red-950 dark:hover:bg-blue-800 hover:bg-red-800`} aria-disabled={pending} type="submit">
+            {pending ? 'CONECTANDO...': 'CONECTE-SE!'}
+        </button>
+    )
 };

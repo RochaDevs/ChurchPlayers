@@ -16,14 +16,12 @@ const NavBar = () => {
         // Função assíncrona declarada dentro do useEffect
         const checkSession = async () => {
             const session = await verifySession();
-            console.log(session)
+            console.log(session);
             setUsuarioLogado(session?.isAuth);
         };
 
         checkSession(); // Chamar a função assíncrona imediatamente
     }, []);
-
-    console.log(usuarioLogado)
 
     const listaNav = [
         {

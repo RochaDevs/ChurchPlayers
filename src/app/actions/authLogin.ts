@@ -52,14 +52,14 @@ export async function login(state: FormLoginState, formData: FormData) {
     try {
         const userValidaded = await getUserForValidation(validatedFieldsForLogin.data.email, validatedFieldsForLogin.data.password);
 
-        await createSession(userValidaded.id.toString());
-
-        redirect('/');
-    } catch (error) {
-        return {erroDeAutenticacao: 'Usuário não encontrado ou senha incorreta'}
+        await createSession(userValidaded.id.toString(), userValidaded.function)
+    }
+    catch (error) {
+        return { erroDeAutenticacao: 'Usuário não encontrado ou senha incorreta' };
     }
 
-    
+    redirect('/');
+
 }
 
 

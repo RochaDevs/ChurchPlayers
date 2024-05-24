@@ -9,7 +9,7 @@ const encodedKey = new TextEncoder().encode(secretKey);
 // Definição de tipo para o payload da sessão
 type SessionPayload = {
     userId: string;
-    roles: string[];
+    roles: string;
     expiresAt: Date;
     // Outros campos que possam ser necessários para a sessão
 };
@@ -22,7 +22,7 @@ export async function encrypt(payload: SessionPayload) {
     .sign(encodedKey)
 };
 
-// O ERRO ESTÁ AQUI!
+
 export async function decrypt(session: string | undefined = '') {
   try {
     const { payload } = await jwtVerify(session, encodedKey, {
@@ -34,7 +34,7 @@ export async function decrypt(session: string | undefined = '') {
   }
 };
  
-export async function createSession(userId: string, roles: string[] = []) {
+export async function createSession(userId: string, roles: string) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
   const session = await encrypt({ userId, roles, expiresAt })
  

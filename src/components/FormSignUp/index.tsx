@@ -2,18 +2,7 @@
 
 
 import { signup } from '@/app/actions/authSignUp';
-import Link from 'next/link';
 import { useFormState, useFormStatus } from 'react-dom';
-
-export function SignupButton() {
-  const { pending } = useFormStatus()
-
-  return (
-    <button className={`dark:bg-blue-950 text-white w-full p-3 rounded-md bg-red-950 dark:hover:bg-blue-800 hover:bg-red-800`} aria-disabled={pending} type="submit">
-      {pending ? 'REGISTRANDO-SE' : 'REGISTRE-SE!'}
-    </button>
-  )
-};
 
 export const FormSignUp = () => {
   const [state, formSignupServerAction] = useFormState(signup, undefined);
@@ -70,7 +59,17 @@ export const FormSignUp = () => {
       )}
 
       <SignupButton />
-      
+
     </form>
   );
+};
+
+export function SignupButton() {
+  const { pending } = useFormStatus()
+
+  return (
+    <button className={`dark:bg-blue-950 text-white w-full p-3 rounded-md bg-red-950 dark:hover:bg-blue-800 hover:bg-red-800`} aria-disabled={pending} type="submit">
+      {pending ? 'REGISTRANDO-SE' : 'REGISTRE-SE!'}
+    </button>
+  )
 };
