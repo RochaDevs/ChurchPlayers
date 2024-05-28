@@ -83,12 +83,6 @@ const NavBar = () => {
                 </div>
             ) : (
                 <div className='flex gap-5'>
-                    <div className=''>
-                        <ThemeChanger
-                            iconeDarkMode={<MoonIcon className='hover:text-red-500' height={35} width={35} />}
-                            iconeLightMode={<SunIcon className='dark:hover:text-cyan-400' height={35} width={35} />}
-                        />
-                    </div>
                     <Link
                         href={'/login'}
                         className={`flex items-center hover:text-red-500 dark:hover:text-cyan-400`}

@@ -10,7 +10,7 @@ import { endPointToUsers } from '@/utils/endpoints';
 export const verifySession = cache(async () => {
 
   const cookie = cookies().get('session')?.value
-  console.log(cookie, 'cookie')
+  console.log(cookie)
   const session = await decrypt(cookie)
 
  

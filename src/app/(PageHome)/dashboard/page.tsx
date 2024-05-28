@@ -1,8 +1,12 @@
+import { AsideDashboard } from "@/components/AsideDashboard";
 
 
 
 export default function Dashboard () {
     return (
-        <h1>Dashboard</h1>
+        <section className={`flex w-full`}>
+            <AsideDashboard />
+            <p>Dashboard</p>
+        </section>
     )
 }
