@@ -3,7 +3,7 @@ import { ThemeChanger } from "../ButtonTheme"
 
 export const AsideDashboard = () => {
     return (
-        <aside className={`bg-red-700`}>
+        <aside className={`bg-red-700 dark:bg-blue-900 h-screen w-1/6 flex flex-col items-center justify-between`}>
             <div className={``}>
                 <div>
                     <img src="" alt="Image's User" />
