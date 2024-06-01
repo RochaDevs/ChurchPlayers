@@ -70,7 +70,7 @@ export const AsideDashboard = () => {
             </div>
 
             <nav className={`border-t-2 border-slate-300 border-solid w-full flex flex-col items-start pt-2 px-2 gap-1`}>
-                <Link href='/dashboard/settings' className={`flex items-center gap-1 hover:bg-red-500 dark:hover:bg-blue-700 w-full rounded-md p-1`}>
+                <Link href='/dashboard/editprofile' className={`flex items-center gap-1 hover:bg-red-500 dark:hover:bg-blue-700 w-full rounded-md p-1`}>
                     <Cog6ToothIcon
                         height={25}
                     />
