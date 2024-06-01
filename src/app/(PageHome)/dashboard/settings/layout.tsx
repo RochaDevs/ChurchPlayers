@@ -1,4 +1,4 @@
-import AsideSettings from "@/components/AsideSettings"
+import AsideSettings from "@/components/AsideSettings";
 
 
 export default function DashboardSettingsLayout({
@@ -7,7 +7,7 @@ export default function DashboardSettingsLayout({
     children: React.ReactNode
 }) {
     return (
-        <section  className={`flex w-full dark:bg-blue-950 text-white h-screen`}>
+        <section  className={`flex w-full dark:bg-blue-950 text-white h-screen items-center`}>
             {children}
             <AsideSettings />
         </section>
