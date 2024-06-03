@@ -12,8 +12,9 @@ interface IListAsideSettings {
 
 
 export default function AsideSettings() {
-    const pathname = usePathname();
     
+    const pathname = usePathname();
+
     const getClassName = (route: string): string => (
         `${pathname === route ? 'dark:bg-blue-600 bg-red-500' : ''} flex items-center justify-start gap-1 hover:bg-red-500 dark:hover:bg-blue-700 w-full rounded-md py-1 px-2 text-xs`
     )
@@ -27,17 +28,17 @@ export default function AsideSettings() {
         {
             icon: <ShieldCheckIcon height={30} />,
             title: 'Segurança',
-            route: '/dashboard/settings/security'
+            route: '/dashboard/editprofile/security'
         },
         {
             icon: <BellAlertIcon height={30} />,
             title: 'Notificações',
-            route: '/dashboard/settings/news'
+            route: '/dashboard/editprofile/notification'
         },
         {
             icon: <BanknotesIcon height={30} />,
             title: 'Contribuições',
-            route: '/dashboard/settings/donation'
+            route: '/dashboard/editprofile/donation'
         },
     ]
 
