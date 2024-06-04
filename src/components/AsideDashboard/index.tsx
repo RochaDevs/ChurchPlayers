@@ -5,6 +5,7 @@ import styles from './AsideDashboard.module.css';
 import Link from "next/link";
 import Image from 'next/image';
 import AvatarIcon from '../../../public/grandpaIcon.jpg';
+import { ButtonLogout } from "../ButtonLogout";
 
 interface LinkItem {
     route: string;
@@ -77,12 +78,7 @@ export const AsideDashboard = () => {
                     />
                     Settings
                 </Link>
-                <button className={`flex items-center gap-1 dark:hover:bg-blue-700 hover:bg-red-500 w-full rounded-md p-1`}>
-                    <ArrowRightStartOnRectangleIcon
-                        height={25}
-                    />
-                    Log out
-                </button>
+                <ButtonLogout />
             </nav>
         </aside>
     )

@@ -58,7 +58,7 @@ export async function login(state: FormLoginState, formData: FormData) {
         return { erroDeAutenticacao: 'Usuário não encontrado ou senha incorreta' };
     }
 
-    redirect('/');
+    redirect('/dashboard');
 
 }
 

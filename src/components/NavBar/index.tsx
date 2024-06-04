@@ -1,10 +1,8 @@
 'use client';
-import { BookOpenIcon, BellIcon, UserIcon, SunIcon, MoonIcon } from '@heroicons/react/24/solid';
+import { BookOpenIcon, UserIcon } from '@heroicons/react/24/solid';
 import ButtonNav from '../ButtonNav';
 import Link from 'next/link';
 import { MenuDropDown } from '../MenuDropDown';
-import { ThemeChanger } from '../ButtonTheme';
-import { ButtonLogout } from '../ButtonLogout';
 import { verifySession } from '@/app/lib/dal';
 import { useEffect, useState } from 'react';
 
@@ -67,33 +65,18 @@ const NavBar = () => {
                     </li>
                 ))}
             </ul>
-            
-            {usuarioLogado ? (
-                <div className={`flex gap-5 items-center`}>
-                    <ThemeChanger
-                        iconeDarkMode={<MoonIcon className='hover:text-red-500' height={35} width={35} />}
-                        iconeLightMode={<SunIcon className='dark:hover:text-cyan-400' height={35} width={35} />}
+
+            <div className='flex gap-5'>
+                <Link
+                    href={'/login'}
+                    className={`flex items-center hover:text-red-500 dark:hover:text-cyan-400`}
+                >
+                    <UserIcon
+                        className='h-8 w-8'
                     />
-                    <BellIcon
-                        height={30}
-                        className='hover:text-red-500 dark:hover:text-cyan-400'
-                    />
-                    <img src="" alt="Imagem" />
-                    <ButtonLogout />
-                </div>
-            ) : (
-                <div className='flex gap-5'>
-                    <Link
-                        href={'/login'}
-                        className={`flex items-center hover:text-red-500 dark:hover:text-cyan-400`}
-                    >
-                        <UserIcon
-                            className='h-8 w-8'
-                        />
-                        <p>Logar</p>
-                    </Link>
-                </div>
-            )}
+                    <p>Logar</p>
+                </Link>
+            </div>
 
         </nav>
     )

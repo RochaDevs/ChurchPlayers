@@ -24,7 +24,7 @@ const PageLogin = () => {
                 </section>
             </section>
             <section className={`lg:hidden flex flex-col h-screen w-full`}>
-                <div className={`h-1/2 bg-gradient-to-r from-red-400 to-red-600 h-screen dark:bg-gradient-to-r dark:from-blue-900 dark:to-blue-950 flex items-center justify-center`}>
+                <div className={`bg-gradient-to-r from-red-400 to-red-600 h-screen dark:bg-gradient-to-r dark:from-blue-900 dark:to-blue-950 flex items-center justify-center`}>
                     <HeartIcon height={200} width={200} color="white" />
                     <ArrowPathRoundedSquareIcon height={66} width={66} color="white" />
                     <BookOpenIcon height={200} width={200} color="white" />
