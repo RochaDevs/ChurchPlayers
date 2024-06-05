@@ -1,11 +1,11 @@
 
-import { MoonIcon, SunIcon, Cog6ToothIcon, ArrowRightStartOnRectangleIcon } from "@heroicons/react/24/solid"
+import { MoonIcon, SunIcon, Cog6ToothIcon } from "@heroicons/react/24/solid"
 import { ThemeChanger } from "../ButtonTheme"
 import styles from './AsideDashboard.module.css';
 import Link from "next/link";
-import Image from 'next/image';
-import AvatarIcon from '../../../public/grandpaIcon.jpg';
+
 import { ButtonLogout } from "../ButtonLogout";
+import { UserSection } from "../UserSection";
 
 interface LinkItem {
     route: string;
@@ -45,18 +45,7 @@ export const AsideDashboard = () => {
     return (
         <aside className={`${styles.asideContainer} bg-red-700 dark:bg-blue-900 h-screen flex flex-col items-center justify-between pt-4 pb-2`}>
             <div className={`flex flex-col items-center h-2/5 justify-between px-2`}>
-                <div className={`flex items-center gap-2 bg-red-500 dark:bg-blue-700 py-2 px-3 rounded-md text-sm`}>
-                    <Image
-                        src={AvatarIcon}
-                        alt="User's image"
-                        className="rounded-full"
-                    />
-                    <div>
-                        <p>Matheus Rocha</p>
-                        <p className={`underline`}>rochadevs</p>
-                    </div>
-                </div>
-
+                <UserSection />
                 <ThemeChanger
                     iconeDarkMode={<MoonIcon className='hover:text-red-400' height={35} width={35} />}
                     iconeLightMode={<SunIcon className='dark:hover:text-cyan-400' height={35} width={35} />}
