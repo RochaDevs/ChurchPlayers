@@ -20,5 +20,6 @@ model User {
   password  String
   function  String   @default("user")
   createdAt DateTime @default(now())
+  nickname  String
 }
 

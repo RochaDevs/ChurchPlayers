@@ -1,13 +1,13 @@
 // app/actions/getUserInfo.ts
 'use server';
 
-
 import { PrismaClient } from '@prisma/client';
 import { verifySession } from '../lib/dal';
+import { cache } from 'react';
 
 const prisma = new PrismaClient();
 
-export async function getUserInfo() {
+export const getUserInfo = cache(async () => {
   try {
     const session = await verifySession();
 
@@ -21,6 +21,13 @@ export async function getUserInfo() {
       where: {
         id: userId,
       },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        function: true,
+        nickname: true,
+      },
     });
 
     if (!user) {
@@ -32,4 +39,4 @@ export async function getUserInfo() {
     console.error('Erro ao buscar informações do usuário:', error);
     throw error;
   }
-}
+})
