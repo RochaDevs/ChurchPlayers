@@ -25,7 +25,7 @@ export const EditProfileForm = () => {
                 setEmail(data.email ?? '');
                 setNickname(data.nickname ?? '');
                 setGender(data.gender ?? '');
-                setCountry(data.contry ?? ''); // Certifique-se de adicionar 'country' ao seu modelo de dados se necessário
+                setCountry(data.contry ?? '');
                 setMaritalStatus(data.maritalStatus ?? '');
                 setChristianDenom(data.christianDenom ?? '');
             }
@@ -80,16 +80,24 @@ export const EditProfileForm = () => {
 
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="data_de_nascimento">Data de Nascimento:</label>
-                <input id="data_de_nascimento" name="data_de_nascimento" placeholder="Data de nascimento" type="date"
+                <input 
+                    id="birthDate" 
+                    name="birthDate" 
+                    placeholder="Data de nascimento" 
+                    type="date"
                     className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black`}
                 />
             </div>
 
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="genero">Selecione seu gênero:</label>
-                <select className="py-1 px-2 rounded-md focus:outline-none bg-white text-black" 
+                <select 
+                    className="py-1 px-2 rounded-md focus:outline-none bg-white text-black" 
                     value={gender}
-                    onChange={e => setGender(e.target.value)}>
+                    onChange={e => setGender(e.target.value)}
+                    name="gender"
+                    id="gender"
+                >
                     <option disabled selected>Qual o seu gênero de nascimento?</option>
                     <option>Masculino</option>
                     <option>Fêminino</option>
@@ -98,9 +106,12 @@ export const EditProfileForm = () => {
 
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="estado">Selecione seu estado:</label>
-                <select className="py-1 px-2 rounded-md focus:outline-none bg-white text-black"
+                <select 
+                    className="py-1 px-2 rounded-md focus:outline-none bg-white text-black"
                     value={country}
                     onChange={e => setCountry(e.target.value)}
+                    name="country"
+                    id="country"
                 >
                     <option disabled selected>Qual o seu estado?</option>
                     <option>Acre (AC)</option>
@@ -135,9 +146,12 @@ export const EditProfileForm = () => {
 
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="estado_civil">Selecione seu estado civil:</label>
-                <select className="py-1 px-2 rounded-md focus:outline-none bg-white text-black" 
+                <select 
+                    className="py-1 px-2 rounded-md focus:outline-none bg-white text-black" 
                     value={maritalStatus}
                     onChange={e => setMaritalStatus(e.target.value)}
+                    name="maritalStatus"
+                    id="maritalStatus"
                 >
                     <option disabled selected>Qual o seu estado civil?</option>
                     <option>Solteiro</option>
@@ -149,9 +163,12 @@ export const EditProfileForm = () => {
 
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="estado_civil">Selecione sua denominação</label>
-                <select className="py-1 px-2 rounded-md focus:outline-none bg-white text-black" 
+                <select 
+                    className="py-1 px-2 rounded-md focus:outline-none bg-white text-black" 
                     value={christianDenom}
                     onChange={e => setChristianDenom(e.target.value)}
+                    name="christianDenom"
+                    id="christianDenom"
                 >
                     <option disabled selected>Qual a sua denominação cristã?</option>
                     <option>Igreja Presbiteriana do Brasil (IPB)</option>

@@ -50,7 +50,7 @@ export async function signup(state: FormSignUpState, formData: FormData) {
       data: userData
     })
 
-    await createSession(user.id.toString());
+    await createSession(user.id.toString(), user.function);
 
   } catch (error) {
     return {erroAoCriarUsuario: 'Algo deu errado ao registrar seus dados. Tente novamente mais tarde.'}

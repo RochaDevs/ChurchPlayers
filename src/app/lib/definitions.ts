@@ -53,3 +53,47 @@ export type FormLoginState =
         message?: string
     }
     | undefined
+
+export const UpdateUserFormSchema = z.object({
+    name: z
+        .string()
+        .min(3, { message: 'O nome deve conter no mínimo 3 caracteres' })
+        .trim(),
+    email: z
+        .string()
+        .email({ message: 'Por favor insira um e-mail válido' })
+        .trim(),
+    nickname: z
+        .string()
+        .max(8, { message: 'Deve conter no máximo 8 caracteres' })
+        .trim(),
+    birthDate: z
+        .date(),
+    gender: z
+        .string()
+        .trim(),
+    country: z
+        .string()
+        .trim() ,
+    maritalStatus: z 
+        .string()
+        .trim(),
+    christianDenom: z
+        .string()
+        .trim()
+    
+})
+
+export type UpdateUserFormState = {
+    errors?: {
+        name?: string[];
+        email?: string[];
+        nickname?: string[];
+        birthDate?: string[];
+        gender?: string[];
+        country?: string[];
+        maritalStatus?: string[];
+        christianDenom?: string[];
+    };
+    message?: string;
+} | undefined;
