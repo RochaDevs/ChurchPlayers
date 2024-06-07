@@ -3,7 +3,6 @@ import { MoonIcon, SunIcon, Cog6ToothIcon } from "@heroicons/react/24/solid"
 import { ThemeChanger } from "../ButtonTheme"
 import styles from './AsideDashboard.module.css';
 import Link from "next/link";
-
 import { ButtonLogout } from "../ButtonLogout";
 import { UserSection } from "../UserSection";
 
@@ -69,6 +68,6 @@ export const AsideDashboard = () => {
                 </Link>
                 <ButtonLogout />
             </nav>
-        </aside>
+        </aside >
     )
 } 

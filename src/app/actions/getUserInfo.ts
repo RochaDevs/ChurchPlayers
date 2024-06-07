@@ -1,4 +1,4 @@
-// app/actions/getUserInfo.ts
+
 'use server';
 
 import { PrismaClient } from '@prisma/client';

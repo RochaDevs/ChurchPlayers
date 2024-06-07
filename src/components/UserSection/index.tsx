@@ -1,33 +1,35 @@
-'use client'
+'use client';
 
 import Image from "next/image";
 import AvatarIcon from '../../../public/grandpaIcon.jpg';
 import { getUserInfo } from "@/app/actions/getUserInfo";
-import { useEffect, useState } from "react";
-import Skeleton from 'react-loading-skeleton';
+import { useState, useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
 
-
-
-export const UserSection = () => {
-
+export function UserSection() {
     const [userData, setUserData] = useState<any>(null);
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const data = await getUserInfo();
-                setUserData(data);
-            } catch (error) {
-                throw new Error ('Erro ao buscar informações do usuario')
-            }
+        const fetchData = async () => {
+            const data = await getUserInfo();
+            setUserData(data);
         };
 
-        fetchUserData();
-    }, [])
+        fetchData();
+    }, []);
 
     if (!userData) {
-        return <div>Carregando...</div>;
+        return (
+            <div className={`flex items-center gap-2 bg-red-500 dark:bg-blue-700 py-2 px-3 rounded-md text-sm`}>
+                <Skeleton circle={true} height={50} width={50} />
+                <div>
+                    <Skeleton width={50} />
+                    <Skeleton width={100} />
+                </div>
+            </div>
+        )
+
     }
 
     const [firstName, secondName] = userData.name.split(' ');
@@ -39,11 +41,15 @@ export const UserSection = () => {
                 src={AvatarIcon}
                 alt="User's image"
                 className="rounded-full"
+                height={50}
+                width={50}
             />
             <div>
                 <p>{displayName}</p>
                 <p className={`underline`}>{userData.nickname}</p>
             </div>
         </div>
-    )
+    );
 }
+
+export default UserSection;
