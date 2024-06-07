@@ -1,8 +1,39 @@
 "use client";
 
+import { getUserInfo } from "@/app/actions/getUserInfo";
+import { IInfoUser } from "@/app/interface/infoUser";
+import { useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 
 export const EditProfileForm = () => {
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [nickname, setNickname] = useState('');
+    const [birthDate, setBirthDate] = useState('');
+    const [gender, setGender] = useState('');
+    const [country, setCountry] = useState('');
+    const [maritalStatus, setMaritalStatus] = useState('');
+    const [christianDenom, setChristianDenom] = useState('');
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await getUserInfo();
+            if (data) {
+                setName(data.name ?? '');
+                setEmail(data.email ?? '');
+                setNickname(data.nickname ?? '');
+                setGender(data.gender ?? '');
+                setCountry(data.contry ?? ''); // Certifique-se de adicionar 'country' ao seu modelo de dados se necessário
+                setMaritalStatus(data.maritalStatus ?? '');
+                setChristianDenom(data.christianDenom ?? '');
+            }
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <form action={''} className={`flex flex-col gap-3`}>
             <div className={`flex flex-col gap-1`}>
@@ -14,6 +45,8 @@ export const EditProfileForm = () => {
                     name="name"
                     placeholder="Nome"
                     className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black`}
+                    value={name} 
+                    onChange={e => setName(e.target.value)}
                 />
             </div>
 
@@ -26,6 +59,22 @@ export const EditProfileForm = () => {
                     id="email"
                     name="email" type="email" placeholder="Email"
                     className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black`}
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                />
+            </div>
+
+            <div className={`flex flex-col gap-1`}>
+                <label
+                    htmlFor="text">
+                    Nickname:
+                </label>
+                <input
+                    id="nickname"
+                    name="nickname" type="text" placeholder="NickName"
+                    className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black`}
+                    value={nickname}
+                    onChange={e => setNickname(e.target.value)}
                 />
             </div>
 
@@ -38,7 +87,9 @@ export const EditProfileForm = () => {
 
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="genero">Selecione seu gênero:</label>
-                <select className="py-1 px-2 rounded-md focus:outline-none bg-white text-black">
+                <select className="py-1 px-2 rounded-md focus:outline-none bg-white text-black" 
+                    value={gender}
+                    onChange={e => setGender(e.target.value)}>
                     <option disabled selected>Qual o seu gênero de nascimento?</option>
                     <option>Masculino</option>
                     <option>Fêminino</option>
@@ -47,7 +98,10 @@ export const EditProfileForm = () => {
 
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="estado">Selecione seu estado:</label>
-                <select className="py-1 px-2 rounded-md focus:outline-none bg-white text-black">
+                <select className="py-1 px-2 rounded-md focus:outline-none bg-white text-black"
+                    value={country}
+                    onChange={e => setCountry(e.target.value)}
+                >
                     <option disabled selected>Qual o seu estado?</option>
                     <option>Acre (AC)</option>
                     <option>Alagoas (AL)</option>
@@ -81,7 +135,10 @@ export const EditProfileForm = () => {
 
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="estado_civil">Selecione seu estado civil:</label>
-                <select className="py-1 px-2 rounded-md focus:outline-none bg-white text-black">
+                <select className="py-1 px-2 rounded-md focus:outline-none bg-white text-black" 
+                    value={maritalStatus}
+                    onChange={e => setMaritalStatus(e.target.value)}
+                >
                     <option disabled selected>Qual o seu estado civil?</option>
                     <option>Solteiro</option>
                     <option>Casado</option>
@@ -91,8 +148,11 @@ export const EditProfileForm = () => {
             </div>
 
             <div className={`flex flex-col gap-1`}>
-                <label htmlFor="estado_civil">Selecione seu estado civil:</label>
-                <select className="py-1 px-2 rounded-md focus:outline-none bg-white text-black">
+                <label htmlFor="estado_civil">Selecione sua denominação</label>
+                <select className="py-1 px-2 rounded-md focus:outline-none bg-white text-black" 
+                    value={christianDenom}
+                    onChange={e => setChristianDenom(e.target.value)}
+                >
                     <option disabled selected>Qual a sua denominação cristã?</option>
                     <option>Igreja Presbiteriana do Brasil (IPB)</option>
                     <option>Igreja Batista</option>

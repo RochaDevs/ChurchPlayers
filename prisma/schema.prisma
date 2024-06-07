@@ -14,12 +14,18 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  function  String   @default("user")
-  createdAt DateTime @default(now())
-  nickname  String
+  id               Int      @id @default(autoincrement())
+  name             String
+  email            String   @unique
+  password         String
+  function         String   @default("user")
+  createdAt        DateTime @default(now())
+  nickname         String?
+  birthDate        DateTime?   // Data de nascimento
+  gender           String?   // Gênero
+  maritalStatus    String?   // Estado civil
+  christianDenom   String?   // Denominação cristã
+  contry           String? // Estado
 }
+
 

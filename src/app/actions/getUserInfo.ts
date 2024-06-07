@@ -27,6 +27,12 @@ export const getUserInfo = cache(async () => {
         email: true,
         function: true,
         nickname: true,
+        birthDate: true,
+        christianDenom: true,
+        createdAt: true,
+        gender: true,
+        maritalStatus: true,
+        contry: true
       },
     });
 
