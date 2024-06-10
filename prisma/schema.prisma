@@ -21,7 +21,6 @@ model User {
   function         String   @default("user")
   createdAt        DateTime @default(now())
   nickname         String?
-  birthDate        DateTime?   // Data de nascimento
   gender           String?   // Gênero
   maritalStatus    String?   // Estado civil
   christianDenom   String?   // Denominação cristã

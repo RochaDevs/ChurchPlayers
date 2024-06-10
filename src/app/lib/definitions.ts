@@ -67,12 +67,10 @@ export const UpdateUserFormSchema = z.object({
         .string()
         .max(8, { message: 'Deve conter no máximo 8 caracteres' })
         .trim(),
-    birthDate: z
-        .date(),
     gender: z
         .string()
         .trim(),
-    country: z
+    contry: z
         .string()
         .trim() ,
     maritalStatus: z 
@@ -89,9 +87,8 @@ export type UpdateUserFormState = {
         name?: string[];
         email?: string[];
         nickname?: string[];
-        birthDate?: string[];
         gender?: string[];
-        country?: string[];
+        contry?: string[];
         maritalStatus?: string[];
         christianDenom?: string[];
     };

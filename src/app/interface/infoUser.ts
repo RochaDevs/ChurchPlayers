@@ -4,7 +4,6 @@ export interface IInfoUser {
     email: string,
     function: string,
     nickname?: string | null,
-    birthDate?: Date | null,
     christianDenom?: string | null,
     createdAt: Date,
     gender?: string | null,
