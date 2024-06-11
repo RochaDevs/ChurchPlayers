@@ -5,6 +5,10 @@ import { updateUser } from "@/app/actions/postUserInfo";
 import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
+interface ISignupButton {
+    stateDisabled: boolean;
+  }
+
 export const EditProfileForm = () => {
 
     const [name, setName] = useState('');
@@ -16,7 +20,11 @@ export const EditProfileForm = () => {
     const [christianDenom, setChristianDenom] = useState('');
 
     const [state, formUpdateUserServerAction] = useFormState(updateUser, undefined)
+    const [disabled, setDisabled] = useState(true)
 
+    const handleDisabled = () => {
+        setDisabled(!disabled)
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,9 +53,9 @@ export const EditProfileForm = () => {
                     id="name"
                     name="name"
                     placeholder="Nome"
-                    className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black`}
-                    value={name}
+                    className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black ${disabled ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-black'}`}
                     onChange={e => setName(e.target.value)}
+                    value={name}
                 />
             </div>
             {state?.errors?.name &&
@@ -62,7 +70,7 @@ export const EditProfileForm = () => {
                 <input
                     id="email"
                     name="email" type="email" placeholder="Email"
-                    className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black`}
+                    className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black ${disabled ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-black'}`}
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                 />
@@ -79,7 +87,7 @@ export const EditProfileForm = () => {
                 <input
                     id="nickname"
                     name="nickname" type="text" placeholder="NickName"
-                    className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black`}
+                    className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black ${disabled ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-black'}`}
                     value={nickname}
                     onChange={e => setNickname(e.target.value)}
                 />
@@ -91,7 +99,7 @@ export const EditProfileForm = () => {
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="genero">Selecione seu gênero:</label>
                 <select
-                    className="py-1 px-2 rounded-md focus:outline-none bg-white text-black"
+                    className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black ${disabled ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-black'}`}
                     value={gender}
                     onChange={e => setGender(e.target.value)}
                     name="gender"
@@ -106,7 +114,7 @@ export const EditProfileForm = () => {
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="contry">Selecione seu estado:</label>
                 <select
-                    className="py-1 px-2 rounded-md focus:outline-none bg-white text-black"
+                    className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black ${disabled ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-black'}`}
                     value={contry}
                     onChange={e => setContry(e.target.value)}
                     name="contry"
@@ -143,11 +151,10 @@ export const EditProfileForm = () => {
                 </select>
             </div>
 
-
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="maritalStatus">Selecione seu estado civil:</label>
                 <select
-                    className="py-1 px-2 rounded-md focus:outline-none bg-white text-black"
+                    className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black ${disabled ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-black'}`}
                     value={maritalStatus}
                     onChange={e => setMaritalStatus(e.target.value)}
                     name="maritalStatus"
@@ -161,11 +168,10 @@ export const EditProfileForm = () => {
                 </select>
             </div>
 
-
             <div className={`flex flex-col gap-1`}>
                 <label htmlFor="christianDenom">Selecione sua denominação</label>
                 <select
-                    className="py-1 px-2 rounded-md focus:outline-none bg-white text-black"
+                    className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black ${disabled ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-black'}`}
                     value={christianDenom}
                     onChange={e => setChristianDenom(e.target.value)}
                     name="christianDenom"
@@ -198,10 +204,15 @@ export const EditProfileForm = () => {
                 </select>
             </div>
 
+            <SignupButton 
+                stateDisabled={disabled}
+            />
 
-            <SignupButton />
-
-            <button className={`dark:bg-blue-950 text-white w-full p-3 rounded-md bg-red-950 dark:hover:bg-blue-800 hover:bg-red-800`}>
+            <button 
+                className={`dark:bg-blue-950 text-white w-full p-3 rounded-md bg-red-950 dark:hover:bg-blue-800 hover:bg-red-800 `}
+                onClick={handleDisabled}
+                type="button"
+            >
                 EDITAR
             </button>
 
@@ -209,11 +220,11 @@ export const EditProfileForm = () => {
     )
 }
 
-export function SignupButton() {
+export function SignupButton({stateDisabled}: ISignupButton) {
     const { pending } = useFormStatus()
 
     return (
-        <button className={`dark:bg-blue-950 text-white w-full p-3 rounded-md bg-red-950 dark:hover:bg-blue-800 hover:bg-red-800`} aria-disabled={pending} type="submit">
+        <button className={`dark:bg-blue-950 text-white w-full p-3 rounded-md bg-red-950 dark:hover:bg-blue-800 hover:bg-red-800 ${stateDisabled ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-black'}`} aria-disabled={pending} disabled={stateDisabled} type="submit">
             {pending ? 'SALVANDO' : 'SALVAR'}
         </button>
     )
