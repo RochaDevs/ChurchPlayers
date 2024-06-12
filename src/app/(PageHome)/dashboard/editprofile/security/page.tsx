@@ -1,6 +1,9 @@
+import { Button } from "@/components/Security/Button";
 
-export default function EditProfileSecurity () {
+export default function EditProfileSecurity() {
     return (
-        <h1></h1>
+        <section className={`w-full flex justify-center`}>
+
+        </section>
     )
 }

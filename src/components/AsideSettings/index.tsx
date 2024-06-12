@@ -15,9 +15,10 @@ export default function AsideSettings() {
     
     const pathname = usePathname();
 
-    const getClassName = (route: string): string => (
-        `${pathname === route ? 'dark:bg-blue-600 bg-red-500' : ''} flex items-center justify-start gap-1 hover:bg-red-500 dark:hover:bg-blue-700 w-full rounded-md py-1 px-2 text-xs`
-    )
+    const getClassName = (route: string): string => {
+        const isActive = pathname.startsWith(route);
+        return `${isActive ? 'dark:bg-blue-600 bg-red-500' : ''} flex items-center justify-start gap-1 hover:bg-red-500 dark:hover:bg-blue-700 w-full rounded-md py-1 px-2 text-xs`;
+    }
 
     const listAsideSettings: IListAsideSettings[] = [
         {
