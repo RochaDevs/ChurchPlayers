@@ -4,6 +4,7 @@ import { FormLoginState, LoginFormSchema } from "../lib/definitions";
 import { createSession } from "../lib/session";
 import { redirect } from "next/navigation";
 import { PrismaClient } from "@prisma/client";
+import { compareBcryptPassword } from "@/utils/comparebcrypt";
 
 const prisma = new PrismaClient()
 
@@ -13,14 +14,17 @@ async function getUserForValidation(emailUser: string, passwordUser: string) {
 
         const user = await prisma.user.findFirst({
             where: {
-                email: emailUser,
-                password: passwordUser
+                email: emailUser
             }
         })
+
+        
 
         if (!user) {
             throw new Error('Usuário não encontrado ou senha incorreta')
         }
+
+        const isPasswordValid = await compareBcryptPassword(passwordUser, user.password);
 
         return user;
 

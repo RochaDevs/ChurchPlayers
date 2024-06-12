@@ -4,6 +4,7 @@ import { SignupFormSchema, FormSignUpState } from '@/app/lib/definitions';
 import { createSession } from '../lib/session';
 import { PrismaClient } from '@prisma/client';
 import { redirect } from 'next/navigation';
+import { bCryptPassword } from '@/utils/dobcrypt';
 
 const prisma = new PrismaClient();
 
@@ -36,11 +37,14 @@ export async function signup(state: FormSignUpState, formData: FormData) {
     return {erroEmailJaEmUso: 'E-mail já está em uso'}
   }
 
+  // Cryptografando a senha
+  const bcryptPassword: any = await bCryptPassword(validatedFieldsForSignUp.data.password)
+
   // Prepare the data to send to the API
   const userData = {
     name: validatedFieldsForSignUp.data.name,
     email: validatedFieldsForSignUp.data.email,
-    password: validatedFieldsForSignUp.data.password,
+    password: bcryptPassword,
   };
 
   // 3. Insert the user into the database or call an Library API
