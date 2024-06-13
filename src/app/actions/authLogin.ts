@@ -26,7 +26,12 @@ async function getUserForValidation(emailUser: string, passwordUser: string) {
 
         const isPasswordValid = await compareBcryptPassword(passwordUser, user.password);
 
-        return user;
+        if(isPasswordValid) {
+            return user;
+        } else {
+            throw new Error('Usuário não encontrado ou senha incorreta')
+        }
+
 
     } catch (error) {
 

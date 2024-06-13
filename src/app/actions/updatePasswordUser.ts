@@ -1,61 +1,58 @@
 'use server';
-import { SignupFormSchema, FormSignUpState, LoginFormSchema } from '@/app/lib/definitions';
+import {PasswordFormSchema, PasswordState } from '@/app/lib/definitions';
 import { PrismaClient } from "@prisma/client";
 import { compareBcryptPassword } from '@/utils/comparebcrypt';
 import { bCryptPassword } from '@/utils/dobcrypt';
 import { getUserInfo } from './getUserInfo';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-export async function updatePasswordUser (state: FormSignUpState, formData: FormData ) {
+export async function updatePasswordUser(state: PasswordState, formData: FormData) {
 
     const userID = (await getUserInfo()).id;
 
-    const currentPassword = formData.get('password') as string
+    const currentPassword = formData.get('password') as string;
+
     if (!currentPassword) {
         throw new Error('Senha atual não fornecida');
     }
-    
-    const validatedFieldForPassword = LoginFormSchema.safeParse({
+
+    const validatedFieldForPassword = PasswordFormSchema.safeParse({
         password: formData.get('newPassword')
-    })
+    });
+
     if (!validatedFieldForPassword.success) {
         return {
             errors: validatedFieldForPassword.error.flatten().fieldErrors,
         };
-    };
-
+    }
 
     try {
         const userPassword = await prisma.user.findFirst({
-            where: {
-                id: userID
-            },
-            select: {
-                password: true
-            }
-        })
+            where: { id: userID },
+            select: { password: true }
+        });
 
-        if(!userPassword) {
-            throw new Error('Usuário não encontrado');
+        if (!userPassword || !userPassword.password) {
+            throw new Error('Usuário não encontrado ou senha não encontrada');
         }
 
-        const isPasswordValid = await compareBcryptPassword(currentPassword, userPassword?.password)
+        const isPasswordValid = await compareBcryptPassword(currentPassword, userPassword.password);
 
-        if(isPasswordValid) {
-            const newPasswordCrypt = await bCryptPassword(validatedFieldForPassword.data.password)
+        if (isPasswordValid) {
+            const newPasswordCrypt = await bCryptPassword(validatedFieldForPassword.data.password);
 
             const updatePassword = await prisma.user.update({
-                where: {id: userID},
-                data: {password: newPasswordCrypt}
-            })
+                where: { id: userID },
+                data: { password: newPasswordCrypt }
+            });
 
-            return {sucess: true, updatePassword}
+            return { success: true, updatePassword };
+        } else {
+            throw new Error('Senha atual incorreta');
         }
-
-
     } catch (error) {
-        throw new Error ('Usuário não encontrado')
+        console.error('Erro ao atualizar a senha:');
+        throw new Error('Erro ao atualizar a senha');
     }
-
 }

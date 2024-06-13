@@ -95,3 +95,25 @@ export type UpdateUserFormState = {
     };
     message?: string;
 } | undefined;
+
+
+export const PasswordFormSchema = z.object({
+    password: z
+        .string()
+        .min(8, { message: 'Mínimo de 8 caracteres.' })
+        .regex(/[a-zA-Z]/, { message: 'Deve conter pelo menos uma letra (maiúscula ou minúscula).' })
+        .regex(/[0-9]/, { message: 'Deve conter pelo menos um número.' })
+        .regex(/[^a-zA-Z0-9]/, {
+            message: 'Deve conter pelo menos um caractere especial (não letra nem número).',
+        })
+        .trim()
+})
+
+export type PasswordState =
+    | {
+        errors?: {
+            password?: string[]
+        }
+        message?: string
+    }
+    | undefined
