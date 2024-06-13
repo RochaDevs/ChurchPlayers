@@ -28,6 +28,7 @@ export type FormSignUpState =
     }
     | undefined
 
+    
 export const LoginFormSchema = z.object({
     email: z
         .string()

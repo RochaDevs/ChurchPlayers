@@ -8,7 +8,7 @@ export default function LayoutSecurity({
     children: React.ReactNode
 }) {
     return (
-        <section  className={`flex flex-col w-full dark:bg-blue-950 text-white h-screen items-center justify-center`}>
+        <section  className={`flex flex-col w-full dark:bg-blue-950 text-white h-screen items-center justify-center gap-2`}>
             <NavBarSecurity />
             {children}
         </section>
