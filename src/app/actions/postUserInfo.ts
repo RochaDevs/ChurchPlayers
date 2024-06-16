@@ -14,7 +14,6 @@ export async function updateUser(state: UpdateUserFormState, formData: FormData)
         // Validate form fields
         const validatedFieldsFormUpdateUser = UpdateUserFormSchema.safeParse({
             name: formData.get('name'),
-            email: formData.get('email'),
             nickname: formData.get('nickname'),
             gender: formData.get('gender'),
             contry: formData.get('contry'),
@@ -33,7 +32,6 @@ export async function updateUser(state: UpdateUserFormState, formData: FormData)
         // Prepare the data to send to the API
         const updatedDatas = {
             name: validatedFieldsFormUpdateUser.data.name,
-            email: validatedFieldsFormUpdateUser.data.email,
             nickname: validatedFieldsFormUpdateUser.data.nickname,
             gender: validatedFieldsFormUpdateUser.data.gender,
             contry: validatedFieldsFormUpdateUser.data.contry,

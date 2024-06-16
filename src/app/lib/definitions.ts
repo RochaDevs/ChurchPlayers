@@ -28,7 +28,7 @@ export type FormSignUpState =
     }
     | undefined
 
-    
+
 export const LoginFormSchema = z.object({
     email: z
         .string()
@@ -60,10 +60,6 @@ export const UpdateUserFormSchema = z.object({
         .string()
         .min(3, { message: 'O nome deve conter no mínimo 3 caracteres' })
         .trim(),
-    email: z
-        .string()
-        .email({ message: 'Por favor insira um e-mail válido' })
-        .trim(),
     nickname: z
         .string()
         .max(8, { message: 'Deve conter no máximo 8 caracteres' })
@@ -73,20 +69,19 @@ export const UpdateUserFormSchema = z.object({
         .trim(),
     contry: z
         .string()
-        .trim() ,
-    maritalStatus: z 
+        .trim(),
+    maritalStatus: z
         .string()
         .trim(),
     christianDenom: z
         .string()
         .trim()
-    
+
 })
 
 export type UpdateUserFormState = {
     errors?: {
         name?: string[];
-        email?: string[];
         nickname?: string[];
         gender?: string[];
         contry?: string[];
@@ -112,8 +107,9 @@ export const PasswordFormSchema = z.object({
 export type PasswordState =
     | {
         errors?: {
-            password?: string[]
+            password?: string[];
         }
         message?: string
     }
     | undefined
+

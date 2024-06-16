@@ -14,7 +14,7 @@ export async function updatePasswordUser(state: PasswordState, formData: FormDat
     const currentPassword = formData.get('password') as string;
 
     if (!currentPassword) {
-        throw new Error('Senha atual não fornecida');
+        return {error: 'Campo vazio'}
     }
 
     const validatedFieldForPassword = PasswordFormSchema.safeParse({
@@ -47,9 +47,10 @@ export async function updatePasswordUser(state: PasswordState, formData: FormDat
                 data: { password: newPasswordCrypt }
             });
 
+
             return { success: true, updatePassword };
         } else {
-            throw new Error('Senha atual incorreta');
+            return {error: 'Senha inválida'}
         }
     } catch (error) {
         console.error('Erro ao atualizar a senha:');

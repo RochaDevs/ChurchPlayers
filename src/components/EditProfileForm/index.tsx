@@ -12,7 +12,6 @@ interface ISignupButton {
 export const EditProfileForm = () => {
 
     const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
     const [nickname, setNickname] = useState('');
     const [gender, setGender] = useState('');
     const [contry, setContry] = useState('');
@@ -31,7 +30,6 @@ export const EditProfileForm = () => {
             const data = await getUserInfo();
             if (data) {
                 setName(data.name ?? '');
-                setEmail(data.email ?? '');
                 setNickname(data.nickname ?? '');
                 setGender(data.gender ?? '');
                 setContry(data.contry ?? '');
@@ -60,23 +58,6 @@ export const EditProfileForm = () => {
             </div>
             {state?.errors?.name &&
                 <p className={`bg-white text-red-600 p-1 rounded-md w-max`}>{state.errors.name}</p>
-            }
-
-            <div className={`flex flex-col gap-1`}>
-                <label
-                    htmlFor="email">
-                    E-mail:
-                </label>
-                <input
-                    id="email"
-                    name="email" type="email" placeholder="Email"
-                    className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black ${disabled ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-black'}`}
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                />
-            </div>
-            {state?.errors?.email &&
-                <p className={`bg-white text-red-600 p-1 rounded-md w-max`}>{state.errors.email}</p>
             }
 
             <div className={`flex flex-col gap-1`}>
