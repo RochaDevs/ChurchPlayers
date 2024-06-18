@@ -1,8 +1,8 @@
 'use client';
 
-import { updatePasswordUser } from "@/app/actions/updatePasswordUser";
+import { updateEmailUser } from "@/app/actions/updateEmailUser";
 import { useState } from "react";
-import { useFormState, useFormStatus } from "react-dom"
+import { useFormState, useFormStatus } from "react-dom";
 
 interface IUpdateButton {
     limparForm: () => void
@@ -10,14 +10,14 @@ interface IUpdateButton {
 
 export const FormChangeEmail = () => {
 
-    const [state, formUpdateSensityDataUserServerAction] = useFormState(updatePasswordUser, undefined)
+    const [state, formUpdateSensityDataUserServerAction] = useFormState(updateEmailUser, undefined)
 
     const [senhaAtual, setSenhaAtual] = useState('');
-    const [novaSenha, setNovaSenha] = useState('');
+    const [novoEmail, setNovoEmail] = useState('');
 
     const limparForm = (): void => {
         setSenhaAtual('');
-        setNovaSenha('')
+        setNovoEmail('')
     }
 
     return (
@@ -52,7 +52,7 @@ export const FormChangeEmail = () => {
 
 
             <div className={'flex flex-col gap-2'}>
-                <label htmlFor='newPassword'>
+                <label htmlFor='newEmail'>
                     Digite aqui o seu novo e-mail:
                 </label>
                 <input
@@ -61,17 +61,12 @@ export const FormChangeEmail = () => {
                     id='newEmail'
                     className={`py-1 px-2 rounded-md focus:outline-none bg-white text-black`}
                     placeholder='Digite seu novo e-mail'
-                    onChange={(e) => setNovaSenha(e.target.value)}
+                    onChange={(e) => setNovoEmail(e.target.value)}
                 />
-                {state?.errors?.password && (
-                    <div className={`bg-white text-red-600 p-1 rounded-md flex flex-col gap-2`}>
-                        <p>A senha deve possuir:</p>
-                        <ul className={`flex flex-col gap-2`}>
-                            {state.errors.password.map((error: any) => (
-                                <li key={error}>- {error}</li>
-                            ))}
-                        </ul>
-                    </div>
+                {state?.error === 'E-mail já está em uso por outro usuário' && (
+                    <p className={`bg-white text-red-600 p-1 rounded-md w-max`}>
+                        E-mail já está em uso por outro usuário
+                    </p>
                 )}
             </div>
 
@@ -80,7 +75,7 @@ export const FormChangeEmail = () => {
             />
             {state?.success && (
                 <p className={`bg-white text-green-600 p-1 rounded-md w-max`}>
-                    Senha atualizada!
+                    E-mail atualizado!
                 </p>
             )}
 

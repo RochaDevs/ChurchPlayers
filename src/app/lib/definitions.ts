@@ -113,3 +113,18 @@ export type PasswordState =
     }
     | undefined
 
+export const EmailFormSchema = z.object({
+    email: z
+        .string()
+        .email({ message: 'Por favor insira um e-mail válido.' })
+        .trim(),
+})
+
+export type EmailState =
+    | {
+        errors?: {
+            email?: string[];
+        }
+        message?: string
+    }
+    | undefined
