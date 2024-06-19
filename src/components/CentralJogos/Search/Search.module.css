@@ -1,0 +1,5 @@
+.bgImage {
+    background: url('data:image/svg+xml;utf8,<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="600" fill="skyblue" /><circle cx="200" cy="150" r="50" fill="white" /><circle cx="250" cy="150" r="40" fill="white" /><circle cx="225" cy="130" r="30" fill="white" /><circle cx="550" cy="200" r="60" fill="white" /><circle cx="600" cy="200" r="50" fill="white" /><circle cx="575" cy="180" r="40" fill="white" /><circle cx="400" cy="100" r="40" fill="white" /><circle cx="440" cy="100" r="30" fill="white" /><circle cx="420" cy="80" r="20" fill="white" /></svg>');
+    background-size: cover;
+
+  }

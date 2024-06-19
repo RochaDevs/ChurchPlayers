@@ -56,7 +56,7 @@ export async function updateEmailUser(state: EmailState, formData: FormData) {
                 where: { id: userID },
                 data: { email: validatedFieldForNewEmail.data.email }
             });
-            return { success: true, message: 'E-mail atualizado com sucesso!' };
+            return { success: true, messageSucess: 'E-mail atualizado com sucesso!' };
         } else {
             console.log("Erro: E-mail já está em uso por outro usuário.");
             return { error: 'E-mail já está em uso por outro usuário' };

@@ -14,29 +14,29 @@ interface LinkItem {
 
 const linkList: LinkItem[] = [
     {
-        route: '/dashboard/teste1',
+        route: '/dashboard/centraljogos',
         className: 'flex items-center gap-1 hover:bg-red-500 dark:hover:bg-blue-700 w-full rounded-md py-3 px-2',
-        title: 'Titulo 1'
+        title: 'Central de jogos'
     },
     {
-        route: '/dashboard/teste2',
+        route: '/dashboard/comunidade',
         className: 'flex items-center gap-1 hover:bg-red-500 dark:hover:bg-blue-700 w-full rounded-md py-3 px-2',
-        title: 'Titulo 2'
+        title: 'Comunidade'
     },
     {
-        route: '/dashboard/teste3',
+        route: '/dashboard/meusamigos',
         className: 'flex items-center gap-1 hover:bg-red-500 dark:hover:bg-blue-700 w-full rounded-md py-3 px-2',
-        title: 'Titulo 3'
+        title: 'Meus amigos'
     },
     {
-        route: '/dashboard/teste4',
+        route: '/dashboard/minhasconquistas',
         className: 'flex items-center gap-1 hover:bg-red-500 dark:hover:bg-blue-700 w-full rounded-md py-3 px-2',
-        title: 'Titulo 4'
+        title: 'Minhas conquistas'
     },
     {
-        route: '/dashboard/teste5',
+        route: '/dashboard/embreve',
         className: 'flex items-center gap-1 hover:bg-red-500 dark:hover:bg-blue-700 w-full rounded-md py-3 px-2',
-        title: 'Titulo 5'
+        title: 'Em breve'
     },
 ]
 

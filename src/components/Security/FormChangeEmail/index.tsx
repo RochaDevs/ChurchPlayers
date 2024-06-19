@@ -75,7 +75,7 @@ export const FormChangeEmail = () => {
             />
             {state?.success && (
                 <p className={`bg-white text-green-600 p-1 rounded-md w-max`}>
-                    E-mail atualizado!
+                    {state.messageSucess}
                 </p>
             )}
 

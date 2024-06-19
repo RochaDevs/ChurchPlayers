@@ -1,24 +1,33 @@
-
 import nodemailer from 'nodemailer'
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail', // ou outro serviço de e-mail
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
 
-export const sendVerificationEmail = (email, token) => {
-  const verificationLink = `${process.env.NEXT_PUBLIC_BASE_URL}/verify-email?token=${token}`;
+const createTransporter = async () => {
+  let transporter = nodemailer.createTransport({
+    service: 'gmail', // Ou outro serviço de e-mail
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    }
+  });
+
+  return transporter;
+};
+
+
+const sendVerificationEmail = async (email, userId, verificationToken) => {
+  const transporter = await createTransporter();
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
     subject: 'Verificação de E-mail',
-    text: `Por favor, verifique seu e-mail clicando no seguinte link: ${verificationLink}`,
-    html: `<p>Por favor, verifique seu e-mail clicando no seguinte link: <a href="${verificationLink}">Verificar E-mail</a></p>`,
+    html: `
+      <h1>Verifique seu e-mail</h1>
+      <p>Por favor, clique no link abaixo para verificar seu novo e-mail:</p>
+      <a href="${process.env.FRONTEND_URL}/verify-email/${userId}/${verificationToken}">Verificar E-mail</a>
+    `
   };
 
-  return transporter.sendMail(mailOptions);
+  await transporter.sendMail(mailOptions);
 };
+
